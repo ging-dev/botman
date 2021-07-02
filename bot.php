@@ -40,4 +40,24 @@ $botman->hears('hentai', function(BotMan $bot) use ($curl) {
     $bot->reply($message);
 });
 
+// Only work in php 7.4
+$botman->hears('{message}', function(BotMan $bot, $message) use ($curl) {
+    $curl->get('https://secureapp.simsimi.com/v1/simsimi/talkset', [
+        'uid' => '306320877',
+        'av' => '6.9.5.1',
+        'ak' => 'cS7nbNTWYV4wHOJA3rdfhtytk2c=',
+        'session' => 'DVvvKBWbfDaH4jWADVP7jB1ZMmF7kZTk4RhBY4ZbqAVbsabYzb66TLax5xCymNx1UhaPtEavdNn43SgRqRDYTSA5',
+        'cc' => 'VN',
+        'tz' => 'Asia/Saigon',
+        'os' => 'a',
+        'lc' => 'vn',
+        'message_sentence' => $message,
+        'normalProb' => 2,
+        'isFilter' => 0,
+        'reqFilter' => 0,
+    ]);
+
+    $bot->reply($curl->response->simsimi_talk_set->answers[0]->sentence);
+});
+
 $botman->listen();

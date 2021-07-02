@@ -1,5 +1,6 @@
 {
     "require": {
+        "php": "^7.4.0",
         "botman/botman": "^2.6",
         "botman/driver-facebook": "^1.11",
         "php-curl-class/php-curl-class": "^8.9"
